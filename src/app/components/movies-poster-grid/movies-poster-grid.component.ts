@@ -17,8 +17,8 @@ export class MoviesPosterGridComponent implements OnInit {
     const pos = document.documentElement.scrollTop + 1300;
     const max = document.documentElement.scrollHeight;
 
-    if (pos > max) {
-      this.moviesService.getNowPlaying().subscribe( res => this.movies.push(...res.results))
+    if (pos > max && !this.moviesService.loading) {
+      this.moviesService.getNowPlaying().subscribe( movies => this.movies.push(...movies))
     }
   }
 
