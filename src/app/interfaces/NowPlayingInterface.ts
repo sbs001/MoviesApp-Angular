@@ -2,7 +2,7 @@
 
 export interface NowPlaying {
   page:          number;
-  results:       Movies[];
+  results:       Movie[];
   dates:         Dates;
   total_pages:   number;
   total_moviess: number;
@@ -13,7 +13,7 @@ export interface Dates {
   minimum: string;
 }
 
-export interface Movies {
+export interface Movie {
   poster_path:       string;
   adult:             boolean;
   overview:          string;
