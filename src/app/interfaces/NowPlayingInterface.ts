@@ -2,7 +2,7 @@
 
 export interface NowPlaying {
   page:          number;
-  moviess:       Movies[];
+  results:       Movies[];
   dates:         Dates;
   total_pages:   number;
   total_moviess: number;

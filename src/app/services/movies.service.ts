@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NowPlaying } from '../interfaces/NowPlayingInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class MoviesService {
 
   constructor( private http: HttpClient) { }
 
-  getNowPlaying(){
-    return this.http.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${this.apiKey}&language=en-US&page=1`)
+  getNowPlaying():Observable<NowPlaying>{
+    return this.http.get<NowPlaying>(`https://api.themoviedb.org/3/movie/now_playing?api_key=${this.apiKey}&language=en-US&page=1`)
   } 
 }
