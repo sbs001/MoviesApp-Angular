@@ -37,4 +37,8 @@ export class MoviesService {
       `${this.baseURL}/search/movie?api_key=${this.apiKey}&language=en-US&query=${movie}&page=1&include_adult=false`
     ).pipe(map(res =>res.results))
   }
+
+  resetNowPlayingPage() {
+    this.nowPlayingPage = 1;
+  }
 }

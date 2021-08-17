@@ -10,6 +10,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class MoviesPosterGridComponent implements OnInit {
 
   @Input() movies: Movie[] = [];
+  @Input() scroll?= true;
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
@@ -17,7 +18,7 @@ export class MoviesPosterGridComponent implements OnInit {
     const pos = document.documentElement.scrollTop + 1300;
     const max = document.documentElement.scrollHeight;
 
-    if (pos > max && !this.moviesService.loading) {
+    if (pos > max && !this.moviesService.loading && this.scroll) {
       this.moviesService.getNowPlaying().subscribe( movies => this.movies.push(...movies))
     }
   }
