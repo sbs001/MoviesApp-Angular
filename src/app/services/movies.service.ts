@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie, NowPlaying } from '../interfaces/NowPlayingInterface';
 import { map, tap } from 'rxjs/operators';
+import { SearchMovie } from '../interfaces/SearchMovieInterface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class MoviesService {
   getNowPlaying(): Observable<Movie[]> {
     this.loading = true;
 
-    return this.http.get<NowPlaying>(
+    return this.http
+      .get<NowPlaying>(
         `${this.baseURL}/movie/now_playing?api_key=${this.apiKey}&language=en-US&page=${this.nowPlayingPage}`
       )
       .pipe(
@@ -28,5 +30,11 @@ export class MoviesService {
           this.loading = false;
         })
       );
+  }
+
+  searchMovie(movie: string):Observable<Movie[]> {
+    return this.http.get<SearchMovie>(
+      `${this.baseURL}/search/movie?api_key=${this.apiKey}&language=en-US&query=${movie}&page=1&include_adult=false`
+    ).pipe(map(res =>res.results))
   }
 }
