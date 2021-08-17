@@ -8,12 +8,15 @@ import { MoviesService } from 'src/app/services/movies.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
   public movies: Movie[] = [];
+  public moviesSlideShow: Movie[] = [];
 
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.moviesService.getNowPlaying().subscribe((res) => this.movies = res.results);
+    this.moviesService.getNowPlaying().subscribe((res) => {
+      this.movies = res.results;
+      this.moviesSlideShow = res.results;
+    });
   }
 }
