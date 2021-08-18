@@ -19,8 +19,10 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
     this.mySwiper = new Swiper('.swiper-container', {
       loop: true,
     });
+    this.mySwiper.slideNext()
   }
   ngOnInit(): void {
+
   }
 
   onSlideNext() {
