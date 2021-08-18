@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Movie, NowPlaying } from '../interfaces/NowPlayingInterface';
 import { map, tap } from 'rxjs/operators';
 import { SearchMovie } from '../interfaces/SearchMovieInterface';
+import { MovieDetail } from '../interfaces/MovieDetailInterface';
 
 @Injectable({
   providedIn: 'root',
@@ -40,5 +41,9 @@ export class MoviesService {
 
   resetNowPlayingPage() {
     this.nowPlayingPage = 1;
+  }
+
+  getMovieDetail(id:string):Observable<MovieDetail>{
+    return this.http.get<MovieDetail>(`${this.baseURL}/movie/${id}?api_key=${this.apiKey}&language=en-US`)
   }
 }
