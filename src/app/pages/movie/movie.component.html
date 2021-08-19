@@ -21,6 +21,7 @@
             <div class="col text-white fs-5">{{ movie.overview }}</div>
         </div>
 
+        <app-cast-slide-show [cast]="cast" *ngIf="cast.length"></app-cast-slide-show>
 
         <div class="row">
             <div class="col mt-5 d-grid gap-2">

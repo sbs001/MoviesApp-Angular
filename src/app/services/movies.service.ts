@@ -5,6 +5,7 @@ import { Movie, NowPlaying } from '../interfaces/NowPlayingInterface';
 import { map, tap } from 'rxjs/operators';
 import { SearchMovie } from '../interfaces/SearchMovieInterface';
 import { MovieDetail } from '../interfaces/MovieDetailInterface';
+import { Casting } from '../interfaces/CastingInterface';
 
 @Injectable({
   providedIn: 'root',
@@ -33,17 +34,29 @@ export class MoviesService {
       );
   }
 
-  searchMovie(movie: string):Observable<Movie[]> {
-    return this.http.get<SearchMovie>(
-      `${this.baseURL}/search/movie?api_key=${this.apiKey}&language=en-US&query=${movie}&page=1&include_adult=false`
-    ).pipe(map(res =>res.results))
+  searchMovie(movie: string): Observable<Movie[]> {
+    return this.http
+      .get<SearchMovie>(
+        `${this.baseURL}/search/movie?api_key=${this.apiKey}&language=en-US&query=${movie}&page=1&include_adult=false`
+      )
+      .pipe(map((res) => res.results));
   }
 
   resetNowPlayingPage() {
     this.nowPlayingPage = 1;
   }
 
-  getMovieDetail(id:string):Observable<MovieDetail>{
-    return this.http.get<MovieDetail>(`${this.baseURL}/movie/${id}?api_key=${this.apiKey}&language=en-US`)
+  getMovieDetail(id: string): Observable<MovieDetail> {
+    return this.http.get<MovieDetail>(
+      `${this.baseURL}/movie/${id}?api_key=${this.apiKey}&language=en-US`
+    );
+  }
+
+  getMovieCasting(id: string) {
+    return this.http
+      .get<Casting>(
+        `${this.baseURL}/movie/${id}/credits?api_key=${this.apiKey}&language=en-US`
+      )
+      .pipe(map((res) => res.cast));
   }
 }
