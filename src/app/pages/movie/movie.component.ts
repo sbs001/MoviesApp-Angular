@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { combineLatest } from 'rxjs';
 import { Cast } from 'src/app/interfaces/CastingInterface';
 import { MovieDetail } from 'src/app/interfaces/MovieDetailInterface';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -23,13 +24,10 @@ export class MovieComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params.id;
 
-    this.moviesService
-      .getMovieDetail(id)
-      .subscribe((res) => (this.movie = res));
-
-    this.moviesService
-      .getMovieCasting(id)
-      .subscribe((res) => (this.cast = res));
+    combineLatest([
+      this.moviesService.getMovieDetail(id),
+      this.moviesService.getMovieCasting(id),
+    ]).subscribe((res) => ([this.movie, this.cast] = res));
   }
 
   goBack() {
