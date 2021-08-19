@@ -1,5 +1,5 @@
 <div class="row mb-5">
-    <div class="col-md-3 mb-5" *ngFor="let movie of movies">
+    <div class="col-md-3 mb-5 animate__animated animate__fadeIn card-" *ngFor="let movie of movies">
 
         <img [src]="movie.poster_path | poster" alt="-" class="img-fluid poster" (click)="onClick(movie.id)">
 

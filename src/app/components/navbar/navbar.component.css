@@ -1,0 +1,10 @@
+.nav- {
+    transition: 0.5s;
+    border-radius: 10px;
+}
+
+.nav-:hover {
+    color: white !important;
+    background-color: rgba(224, 17, 17, 0.452) !important;
+    transform: scale(1.1);
+}

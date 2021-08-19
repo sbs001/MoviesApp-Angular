@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-sm ">
+<nav class="navbar navbar-expand-sm mx-5 pt-3">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/home">MoviesApp</a>
+        <a class="navbar-brand fs-3 nav- px-3" routerLink="/home">MoviesApp</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 
-            <div class="d-flex">
+            <div class="d-flex w-75">
                 <input #input (keyup.enter)="searchMovie(input.value)" class="form-control me-2" type="search" placeholder="Search movies" aria-label="Search">
                 <button (click)="searchMovie(input.value)" class="btn btn-outline-success" type="submit">Search</button>
             </div>
